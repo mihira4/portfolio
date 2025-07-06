@@ -139,3 +139,31 @@ const headerLogoConatiner = document.querySelector('.main-header__logo-container
 headerLogoConatiner.addEventListener('click', () => {
   location.href = 'index.html'
 })
+
+
+function openModal() {
+  const modal = document.getElementById('profilePicModal');
+  const modalImg = document.getElementById('modalImage');
+  const profilePic = document.querySelector('.main-header__logo-img');
+
+  modal.style.display = 'block';
+  modalImg.src = profilePic.src;
+
+  // Stop propagation so clicking inside modalImg does not close modal
+  modalImg.onclick = function(event) {
+    event.stopPropagation();
+  };
+}
+
+function closeModal() {
+  const modal = document.getElementById('profilePicModal');
+  modal.style.display = 'none';
+}
+
+// Close modal when clicking outside the image in modal
+document.getElementById('profilePicModal').onclick = function () {
+  closeModal();
+};
+
+const profilePic = document.querySelector('.main-header__logo-img');
+profilePic.addEventListener('click', openModal);
